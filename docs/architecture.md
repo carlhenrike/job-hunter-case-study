@@ -10,6 +10,10 @@
 
 A falha ou indisponibilidade de uma fonte não deve ser confundida com uma execução sem vagas. O tratamento operacional precisa preservar esse contexto e tornar a falha visível.
 
+## Persistência
+
+A aplicação separa o fluxo de negócio do banco por meio de um contrato de repositório. SQLite é usado no desenvolvimento local e nos testes; Firestore atende à execução em nuvem.
+
 ## Componentes
 
 | Componente | Responsabilidade |
