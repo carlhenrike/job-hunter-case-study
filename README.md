@@ -29,6 +29,7 @@ O desenho é uma visão funcional. A disponibilidade e o formato de cada fonte e
 - Persistência de vagas e estado de processamento no Firestore.
 - Integração de notificações e uma API/painel para consulta.
 - Normalização, deduplicação e pontuação orientada ao perfil de infraestrutura, Cloud, DevOps e SRE.
+- Decisões de integração documentadas para fontes como Solides e Recrutei, considerando acesso real do runtime.
 - Uso de testes, análise estática, auditoria de dependências e pipeline de contêiner.
 - Avaliação crítica de qualidade: comparação entre regras e classificação assistida por IA, com validação de evidências e revisão humana.
 
@@ -51,7 +52,7 @@ Esses números descrevem um conjunto pequeno de teste, não uma métrica de prec
 - **Segredos:** mantidos fora do repositório, no Secret Manager e em configurações protegidas.
 - **Deploy:** objetivo de publicar imagens por digest imutável, executar smoke tests e permitir rollback controlado. O fluxo de deploy da API e do Job precisa ser validado como um conjunto.
 
-Mais detalhes: [decisões técnicas](docs/technical-decisions.md), [qualidade e avaliação](docs/quality-and-validation.md), [segurança](docs/security.md).
+Mais detalhes: [arquitetura](docs/architecture.md), [decisões técnicas](docs/technical-decisions.md), [estratégia das fontes](docs/source-strategy.md), [qualidade e avaliação](docs/quality-and-validation.md), [segurança](docs/security.md).
 
 ## Estado do estudo de caso
 
