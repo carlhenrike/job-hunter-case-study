@@ -57,13 +57,13 @@ O coletor preenche os campos da fonte; as etapas seguintes trabalham com o model
 Versão resumida do fluxo existente:
 
 ```python
-jobs = collect_from_enabled_sources(source_config)
-analyzed = score_and_normalize(jobs, search_profile)
-new_jobs, updated_jobs = repository.upsert_many(analyzed)
-notify(relevant_new_jobs(new_jobs))
+inserted, updated, analyzed, new_jobs = analyze_and_save(
+    collected_jobs, search_profile, repository
+)
+notify([job for job in new_jobs if job.match_score >= alert_threshold])
 ```
 
-A implementação real trata falhas por fonte, registros repetidos, atualizações e histórico de execução. O trecho omite funções internas e detalhes de infraestrutura de propósito.
+A implementação real trata falhas por fonte, registros repetidos, atualizações e histórico de execução. O trecho representa a chamada do serviço existente, mas omite a coleta, as regras de alerta e detalhes de infraestrutura de propósito.
 
 ## Limite de persistência
 
