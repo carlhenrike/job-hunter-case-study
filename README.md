@@ -4,6 +4,14 @@ Uma plataforma pessoal para coletar, organizar e priorizar oportunidades de infr
 
 > Este repositório apresenta a arquitetura, decisões e evidências do projeto Job Hunter. O código completo e o ambiente de produção são privados.
 
+## Visão visual da arquitetura
+
+![Arquitetura funcional do Job Hunter](docs/assets/job-hunter-architecture.svg)
+
+O diagrama apresenta o fluxo lógico da solução, incluindo coleta, execução programada, persistência e alertas. Ele foi elaborado com base na documentação técnica do projeto, sem revelar recursos, credenciais ou topologia privada.
+
+**Demonstração da interface:** capturas reais do painel ainda não foram disponibilizadas para publicação. Para preservar a precisão do estudo de caso, não apresentamos mockups como evidência de produção. As capturas serão adicionadas somente após revisão de dados pessoais, URLs internas e identificadores sensíveis.
+
 ## O problema
 
 Buscar vagas em várias fontes dá trabalho e facilita perder oportunidades. O Job Hunter automatiza parte desse fluxo: consulta fontes configuradas, normaliza os dados, evita duplicidades, aplica critérios de relevância e envia notificações para revisão humana.
@@ -57,7 +65,7 @@ Mais detalhes: [tour pela estrutura do código](docs/code-tour.md), [arquitetura
 
 ## Estado do estudo de caso
 
-Este repositório é um estudo de caso com trechos de código representativos e sanitizados. Ele não contém o código-fonte completo, credenciais, dados pessoais, banco de vagas ou arquivos de avaliação. Os trechos não formam uma demonstração executável. Capturas e vídeo de demonstração ainda não fazem parte desta versão pública.
+Este repositório é um estudo de caso com trechos de código representativos e sanitizados. Ele não contém o código-fonte completo, credenciais, dados pessoais, banco de vagas ou arquivos de avaliação. Os trechos não formam uma demonstração executável. Capturas reais e vídeo de demonstração ainda não fazem parte desta versão pública; o diagrama de arquitetura acima é ilustrativo e baseado na documentação.
 
 O projeto continua sendo revisado. Os resultados acima são exploratórios, e itens de qualidade e operação seguem sujeitos a validação no ambiente privado. Este case não afirma disponibilidade, cobertura completa das fontes ou precisão garantida.
 
