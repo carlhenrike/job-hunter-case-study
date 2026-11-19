@@ -10,7 +10,27 @@ Uma plataforma pessoal para coletar, organizar e priorizar oportunidades de infr
 
 O diagrama apresenta o fluxo lógico da solução, incluindo coleta, execução programada, persistência e alertas. Ele foi elaborado com base na documentação técnica do projeto, sem revelar recursos, credenciais ou topologia privada.
 
-**Demonstração da interface:** capturas reais do painel ainda não foram disponibilizadas para publicação. Para preservar a precisão do estudo de caso, não apresentamos mockups como evidência de produção. As capturas serão adicionadas somente após revisão de dados pessoais, URLs internas e identificadores sensíveis.
+## Dashboard em produção
+
+As imagens mostram o painel em uso em 18 de novembro de 2026. Os recortes preservam os indicadores e controles da interface. Informações individuais de candidatura e detalhes operacionais foram ocultados.
+
+### Visão geral
+
+Os indicadores resumem a base de vagas, as faixas de aderência e as oportunidades cujo país ainda precisa de confirmação.
+
+![Visão geral com total de vagas, faixas de score e país não confirmado](docs/assets/visao-geral.jpg)
+
+### Filtros e classificação
+
+O exemplo usa score mínimo de 70 e exibe primeiro as vagas com maior aderência entre as oportunidades com Brasil confirmado.
+
+![Busca, filtro de score mínimo de 70 e cartões de vagas ordenados por aderência](docs/assets/filtros-classificacao.jpg)
+
+### Acompanhamento das coletas
+
+O histórico mostra a duração da última coleta, falhas por fonte e o resultado das execuções recentes, com contagens de vagas processadas, novas e notificadas.
+
+![Histórico de coletas com duração, contagens e resultados de execução](docs/assets/historico-coletas.jpg)
 
 ## O problema
 
@@ -65,7 +85,7 @@ Mais detalhes: [tour pela estrutura do código](docs/code-tour.md), [arquitetura
 
 ## Estado do estudo de caso
 
-Este repositório é um estudo de caso com trechos de código representativos e sanitizados. Ele não contém o código-fonte completo, credenciais, dados pessoais, banco de vagas ou arquivos de avaliação. Os trechos não formam uma demonstração executável. Capturas reais e vídeo de demonstração ainda não fazem parte desta versão pública; o diagrama de arquitetura acima é ilustrativo e baseado na documentação.
+Este repositório é um estudo de caso com trechos de código representativos e sanitizados. Ele não contém o código-fonte completo, credenciais, dados pessoais, banco de vagas ou arquivos de avaliação. Os trechos não formam uma demonstração executável. As capturas documentam a interface em uso. O diagrama apresenta a arquitetura funcional com base na documentação.
 
 O projeto continua sendo revisado. Os resultados acima são exploratórios, e itens de qualidade e operação seguem sujeitos a validação no ambiente privado. Este case não afirma disponibilidade, cobertura completa das fontes ou precisão garantida.
 
