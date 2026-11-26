@@ -1,6 +1,6 @@
 # Job Hunter — estudo de caso
 
-Uma plataforma pessoal para coletar, organizar e priorizar oportunidades de infraestrutura, Cloud, DevOps e SRE. O projeto combina automação em Python com serviços gerenciados do Google Cloud para executar buscas agendadas, manter o histórico e enviar alertas das vagas que merecem atenção.
+Uma plataforma pessoal para coletar, organizar e priorizar oportunidades de infraestrutura, Cloud, DevOps, SRE e DevSecOps. O projeto combina automação em Python com serviços gerenciados do Google Cloud para executar buscas agendadas, manter o histórico e enviar alertas das vagas que merecem atenção.
 
 > Este repositório apresenta a arquitetura, decisões e evidências do projeto Job Hunter. O código completo e o ambiente de produção são privados.
 
@@ -22,7 +22,7 @@ Os indicadores resumem a base de vagas, as faixas de aderência e as oportunidad
 
 ### Filtros e classificação
 
-O exemplo usa score mínimo de 70 e exibe primeiro as vagas com maior aderência entre as oportunidades com Brasil confirmado.
+A captura de 18 de novembro mostra a triagem por score. Desde a v0.34.84, o painel também filtra por data de descoberta, coletor e modalidade, ordena por recência ou aderência e guarda essas combinações em buscas salvas.
 
 ![Busca, filtro de score mínimo de 70 e cartões de vagas ordenados por aderência](docs/assets/filtros-classificacao.jpg)
 
@@ -64,7 +64,17 @@ O desenho é uma visão funcional. A disponibilidade e o formato de cada fonte e
 
 ## Minha contribuição
 
-Desenhei e implementei o projeto como iniciativa pessoal, da coleta e persistência até a execução em nuvem, alertas e avaliação de qualidade. O trabalho aplica experiência prática em Python, GCP, automação, observabilidade, CI/CD e operação de serviços.
+Desenhei e implementei o Job Hunter como projeto pessoal. Separei a coleta em lote da API para manter responsabilidades e verificações de saúde distintas. Na operação, implementei diagnósticos por fonte e um pipeline que publica imagens por digest, testa a coleta e valida o painel autenticado.
+
+## Evidências de operação
+
+| Evidência | O que foi observado |
+|---|---|
+| **Recuperação de deploy** | Na v0.34.81, o smoke test da API rejeitou a divergência entre a versão esperada e a reportada por `/health`. O pipeline executou o rollback. A v0.34.82 alinhou as versões e passou nos smoke tests do Job e da API. |
+| **Segredos em runtime** | Após a migração da Doc9 para o Secret Manager, uma execução da v0.34.82 coletou 8 vagas da Doc9 e 3 da nova fonte InHire/Zallpy. Ambas concluíram com sucesso. |
+| **Falha parcial de coleta** | Uma execução da v0.34.84 processou 169 vagas, com 2 novas, 167 atualizadas, 1 erro de fonte e 1 aviso. O resumo manteve as ocorrências visíveis junto às contagens. |
+
+Os números descrevem execuções específicas. [Relato técnico do rollback](docs/technical-decisions.md#imagem-imutável-smoke-test-e-rollback).
 
 ## Resultados e limites da avaliação
 
@@ -79,7 +89,7 @@ Esses números descrevem um conjunto pequeno de teste, não uma métrica de prec
 - **Entrega:** notificações para permitir revisão humana antes de qualquer candidatura.
 - **Identidade do CI/CD:** desenho baseado em GitHub Actions com OIDC/Workload Identity Federation, sem chave JSON de longa duração.
 - **Segredos:** mantidos fora do repositório, no Secret Manager e em configurações protegidas.
-- **Deploy:** objetivo de publicar imagens por digest imutável, executar smoke tests e permitir rollback controlado. O fluxo de deploy da API e do Job precisa ser validado como um conjunto.
+- **Deploy:** publicação por digest imutável, smoke tests para o Job e a API e rollback em caso de falha.
 
 Mais detalhes: [tour pela estrutura do código](docs/code-tour.md), [arquitetura](docs/architecture.md), [decisões técnicas](docs/technical-decisions.md), [estratégia das fontes](docs/source-strategy.md), [qualidade e avaliação](docs/quality-and-validation.md), [segurança](docs/security.md).
 
