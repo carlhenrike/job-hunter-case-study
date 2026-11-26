@@ -10,14 +10,14 @@ Este repositório é público e foi separado do projeto de produção. Ele cont�
 - Banco de vagas, dados de avaliação e conteúdo não autorizado das fontes.
 - Dados pessoais de candidatos ou recrutadores.
 
-## Controles previstos no desenho
+## Controles do pipeline e do runtime
 
-- Guardar segredos de runtime no Secret Manager.
-- Autenticar o CI/CD por OIDC/Workload Identity Federation, evitando chaves JSON de longa duração.
+- O Cloud Run Job lê a credencial da Doc9 do Secret Manager por meio da sua identidade de serviço. A coleta foi validada após a migração.
+- O pipeline autentica no Google Cloud por OIDC e Workload Identity Federation, evitando chaves JSON de longa duração.
 - Limitar permissões do workflow ao recurso e ambiente necessários.
 - Restringir credenciais de produção a execuções confiáveis de branch/ambiente protegido.
 - Revisar mudanças de infraestrutura e dependências antes de promover uma imagem.
-- Implantar imagens por digest e validar os serviços após a mudança.
+- O pipeline publica a imagem por digest e executa smoke tests do Job e da API. O painel de produção exige autenticação via IAP.
 
 ## Divulgação
 
