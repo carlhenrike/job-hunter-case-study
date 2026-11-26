@@ -8,11 +8,13 @@ O projeto adicionou um coletor público da Solides e o integrou ao fluxo do Job 
 
 **Motivação:** entregar links estáveis e evitar URLs não canônicas que quebram quando a pessoa abre a notificação.
 
-## Recrutei — mantida como referência, desativada por padrão
+## Recrutei
 
-O coletor permanece no projeto como referência técnica, mas a fonte fica com `enabled: false` por padrão. As requisições feitas pelo Cloud Run recebiam HTTP 403, então a fonte não foi usada na execução de produção.
+Em uma configuração anterior, requisições do Cloud Run receberam HTTP 403 e o coletor ficou desativado. A configuração atual voltou a habilitar a fonte. O resultado de cada execução depende da resposta do portal e deve ser acompanhado no diagnóstico por coletor.
 
-**Motivação:** refletir a acessibilidade observada pelo runtime real. Uma fonte não deve aparecer como operacional apenas porque funciona em um teste local.
+## Falhas parciais
+
+O resumo separa avisos, erros e resultados de coleta. Uma falha em uma fonte pode produzir um resultado parcial enquanto as demais continuam sendo processadas.
 
 ## Critérios para uma nova fonte
 
