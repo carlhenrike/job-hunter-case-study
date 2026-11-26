@@ -26,12 +26,12 @@ Regras explícitas dão um baseline previsível. A classificação assistida por
 
 ## CI/CD com federação de identidade
 
-O desenho de deploy usa GitHub Actions com OIDC/Workload Identity Federation, evitando manter uma chave de conta de serviço de longa duração no repositório.
+O pipeline de deploy usa GitHub Actions com OIDC/Workload Identity Federation, evitando manter uma chave de conta de serviço de longa duração no repositório.
 
 **Trade-off:** as permissões concedidas ao workflow precisam ser restritas por repositório, branch e ambiente. Workflows de pull request não confiáveis não devem receber acesso de escrita ao estado de produção.
 
 ## Imagem imutável, smoke test e rollback
 
-A imagem deve ser referenciada por digest para que promoção e rollback apontem para o mesmo artefato. Após o deploy, smoke tests devem validar os serviços afetados.
+O pipeline publica a imagem por digest imutável e valida os dois componentes. O smoke test do Job verifica a execução da coleta e o resumo registrado. O da API verifica a resposta autenticada, incluindo a versão em `/health`.
 
-**Ponto de atenção:** o Job e a API são serviços separados. Atualização e rollback precisam cobrir ambos; validar somente o Job pode deixar a API executando uma imagem antiga.
+**Recuperação observada:** na v0.34.81, a versão declarada no pacote divergiu da versão reportada pela API. O smoke test falhou e o pipeline executou o rollback do Job e da API. A v0.34.82 alinhou as duas declarações e passou nos dois smoke tests.
